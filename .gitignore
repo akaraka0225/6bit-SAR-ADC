@@ -3,9 +3,6 @@ __pycache__/
 .venv/
 .ipynb_checkpoints/
 
-# Raw Cadence exports (100MB+), kept locally only
-data/raw/
-
 # OS / editor
 .DS_Store
 Thumbs.db

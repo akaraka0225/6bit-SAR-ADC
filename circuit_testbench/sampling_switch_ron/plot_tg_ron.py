@@ -5,9 +5,9 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parent.parent
-CSV_PATH = ROOT / "data" / "switch" / "TG_RON.csv"
-OUT_PATH = ROOT / "figures" / "tg_ron_sweep.png"
+HERE = Path(__file__).resolve().parent
+CSV_PATH = HERE / "TG_RON.csv"
+OUT_PATH = HERE / "ron_vs_vin_sweep.png"
 
 COLORS = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100"]
 

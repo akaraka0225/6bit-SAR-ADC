@@ -16,9 +16,9 @@ import matplotlib.pyplot as plt
 BLUE = "#0000ff"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CSV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "..", "data", "raw", "CORE_INL_DNL.csv")
-DATA_DIR = os.path.join(HERE, "..", "data", "inl_dnl")
-FIG_DIR = os.path.join(HERE, "..", "figures")
+CSV = sys.argv[1]   # raw Cadence ramp export (not in repo, 100MB+)
+DATA_DIR = HERE
+FIG_DIR = HERE
 
 NBIT = 6
 NCODE = 2 ** NBIT

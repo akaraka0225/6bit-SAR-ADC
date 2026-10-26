@@ -5,7 +5,7 @@ Layout:  (a) PRE  low Fin  | (b) PRE  high Fin
 - Spectrum is plotted exactly as exported from Cadence (DC bin dropped)
 - SNDR/SFDR are typed in from Cadence Outputs (not computed here)
 - ENOB = (SNDR - 1.76) / 6.02
-Output: figures/10_fft_pre_post.png (17 cm wide, 300 dpi)
+Output: fft_pre_post.png (17 cm wide, 300 dpi)
 """
 import os
 import re
@@ -14,7 +14,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CSV_DIR = os.path.join(HERE, "..", "data", "fft")
+CSV_DIR = HERE
 
 # (label, csv file, Fin column tag, SNDR [dB], SFDR [dBc]) -- values from Cadence Outputs
 PANELS = [
@@ -63,7 +63,7 @@ def main():
                 fontsize=FS_LABEL + 1)
     fig.tight_layout(h_pad=1.6, w_pad=1.2, rect=(0, 0, 1, 0.965))
     fig.text(0.01, 0.995, "1024 point FFT, fs = 1MHz", ha="left", va="top", fontsize=FS_LABEL + 1)
-    fig.savefig(os.path.join(HERE, "..", "figures", "10_fft_pre_post.png"))
+    fig.savefig(os.path.join(HERE, "fft_pre_post.png"))
     plt.close(fig)
 
 

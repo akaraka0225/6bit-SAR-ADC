@@ -24,25 +24,25 @@ ENOB는 약 0.1 bit만 떨어졌지만, 소비 전력은 약 3.17배, FoM<sub>W<
 
 ## 회로 구성
 
-<img src="figures/01_block_diagram.png" width="480" alt="SAR ADC 블록 다이어그램">
+<img src="circuit_schematic/top/sar_adc_block_diagram.png" width="480" alt="SAR ADC 블록 다이어그램">
 
 Sampling switch(S/H), CDAC, 비교기, SAR logic의 네 블록으로 구성됩니다.
 
 ### 1. Sampling switch: CMOS transmission gate
 
-<img src="figures/02_tg_schematic.png" width="240" alt="Transmission gate 회로도"> <img src="figures/03_ron_vs_vin.png" width="320" alt="Ron-Vin 그래프">
+<img src="circuit_schematic/sampling_switch/transmission_gate.png" width="240" alt="Transmission gate 회로도"> <img src="circuit_schematic/sampling_switch/ron_vs_vin_concept.png" width="320" alt="Ron-Vin 그래프">
 
 - 단일 NMOS/PMOS 스위치는 Vin이 VDD 또는 VSS 근처일 때 V<sub>GS</sub> < V<sub>TH</sub>가 되어 꺼집니다. 두 소자를 병렬로 묶어 전체 입력 범위에서 R<sub>on</sub>을 낮췄습니다.
 - NMOS W/L = 2 μm / 0.5 μm, Wp:Wn = 3:1입니다. Wp:Wn = N(1~4)으로 sweep해 R<sub>on</sub> 변동폭과 SNDR을 비교한 뒤 정했습니다.
 - Layout에는 substrate noise와 latch-up을 막기 위해 guard ring을 넣었습니다.
 
-<img src="figures/02b_tg_layout.png" width="360" alt="Transmission gate layout">
+<img src="layout/sampling_switch_tg.png" width="360" alt="Transmission gate layout">
 
-<img src="figures/tg_ron_sweep.png" width="480" alt="Wp:Wn sweep에 따른 Ron">
+<img src="circuit_testbench/sampling_switch_ron/ron_vs_vin_sweep.png" width="480" alt="Wp:Wn sweep에 따른 Ron">
 
 ### 2. CDAC: binary-weighted, top-plate sampling
 
-<img src="figures/04_cdac_switching_3bit.png" width="480" alt="CDAC 스위칭 동작 (3-bit)">
+<img src="circuit_schematic/cdac/cdac_switching_3bit.png" width="480" alt="CDAC 스위칭 동작 (3-bit)">
 
 - Sampling 뒤 각 capacitor의 bottom plate를 VREFH 또는 VREFL로 바꿔 top plate 전압을 만들고, 이 전압을 VCM = 2.5 V와 비교합니다. 위 그림은 동작을 3-bit로 줄여 나타낸 것입니다.
 - Unit capacitor는 112.5 fF(15 μm × 15 μm PIP)이고, 2<sup>6</sup> = 64개로 total 7.2 pF입니다.
@@ -50,38 +50,38 @@ Sampling switch(S/H), CDAC, 비교기, SAR logic의 네 블록으로 구성됩�
   - C<sub>unit</sub>을 50 fF에서 112.5 fF로 키우자 비교기 kickback으로 생기는 V<sub>DAC</sub> 흔들림이 1.5 mV에서 0.64 mV로 약 57% 줄었습니다.
 - Mismatch를 줄이기 위해 common-centroid로 배치했습니다.
 
-<img src="figures/05_unit_cap_placement.png" width="260" alt="Common-centroid unit cap 배치표"> <img src="figures/05b_cdac_layout.png" width="280" alt="CDAC capacitor array layout">
+<img src="layout/cdac_common_centroid_map.png" width="260" alt="Common-centroid unit cap 배치표"> <img src="layout/cdac_cap_array.png" width="280" alt="CDAC capacitor array layout">
 
 왼쪽은 common-centroid 배치표, 오른쪽은 이 배치표대로 그린 capacitor array layout입니다.
 
 ### 3. 비교기: StrongARM latch + SR latch
 
-<img src="figures/06_strongarm_latch.png" width="320" alt="StrongARM latch 회로도">
+<img src="circuit_schematic/comparator/strongarm_latch.png" width="320" alt="StrongARM latch 회로도">
 
 - Dynamic latch 구조여서 VDD에서 VSS로 흐르는 DC 경로가 없고, 정적 전력도 거의 없습니다.
 - 입력 트랜지스터를 최소 크기로 만들어 clock feedthrough와 kickback noise를 줄였습니다.
 - 출력에 NAND 기반 SR latch를 달아, 결정된 값을 다음 비교 때까지 유지합니다.
 - Layout은 mismatch를 줄이도록 좌우 대칭으로 그렸고, guard ring으로 외부 간섭을 막았습니다. 아래 그림에서 위쪽이 SR latch, 아래쪽이 StrongARM latch입니다.
 
-<img src="figures/06b_comparator_layout.png" width="320" alt="Comparator + SR latch layout">
+<img src="layout/comparator_sr_latch.png" width="320" alt="Comparator + SR latch layout">
 
 ### 4. SAR logic: 동기식, DFF 기반
 
-<img src="figures/07_sar_logic.png" width="480" alt="SAR logic 회로도">
-<img src="figures/08_timing_diagram.png" width="480" alt="타이밍 다이어그램">
+<img src="circuit_schematic/sar_logic/sar_logic.png" width="480" alt="SAR logic 회로도">
+<img src="circuit_schematic/sar_logic/timing_diagram.png" width="480" alt="타이밍 다이어그램">
 
 - 외부 Main CLK에 동기화되어 CLKs(sampling), CLKc(비교기), D5~D0(CDAC bottom-plate switch) 신호를 만듭니다.
 - EOC(End Of Conversion)의 positive edge에서 최종 6-bit 코드를 출력합니다.
 
 ## Layout
 
-<img src="figures/09_chip_layout.png" width="480" alt="칩 layout">
+<img src="layout/chip_layout.png" width="480" alt="칩 layout">
 
 28-pin SOP 패키지로 tape-out했습니다. ADC 코어 면적은 790 μm × 573.5 μm입니다.
 
 ## 시뮬레이션 결과: FFT
 
-![Pre/Post-layout FFT](figures/10_fft_pre_post.png)
+![Pre/Post-layout FFT](circuit_testbench/fft/fft_pre_post.png)
 
 1024-point coherent FFT, f<sub>s</sub> = 1 MS/s 조건입니다. (a)(b)는 pre-layout, (c)(d)는 post-layout 결과이고, (a)(c)는 fin = 98.6328125 kHz, (b)(d)는 fin = 497.0703125 kHz(Nyquist 부근)입니다.
 
@@ -95,11 +95,11 @@ Sampling switch(S/H), CDAC, 비교기, SAR logic의 네 블록으로 구성됩�
 - Nyquist 부근 입력의 SNDR은 저주파 입력보다 0.156 dB 낮을 뿐이어서, 입력 주파수가 올라가도 성능이 거의 떨어지지 않습니다.
 - Post-layout SNDR은 pre-layout보다 0.591 dB 낮습니다. 블록별로 PEX를 따로 돌려 보니 CDAC 배선 기생 성분이 capacitor ratio를 틀어지게 한 영향이 가장 컸습니다.
 
-## 추가 분석: 정적 선형성 (DNL / INL)
+## 시뮬레이션 결과: 정적 선형성 (DNL / INL)
 
-논문에는 싣지 않은 보조 분석입니다. Post-layout ramp 시뮬레이션(0 → 5 V)에 code-density(histogram) 방식을 적용했습니다. End code(0, 63)는 빼고 endpoint 보정을 했습니다.
+Post-layout ramp 시뮬레이션(0 → 5 V)에 code-density(histogram) 방식을 적용했습니다. End code(0, 63)는 빼고 endpoint 보정을 했습니다.
 
-<img src="figures/DNL_INL_32hits.png" width="420" alt="DNL/INL (32 hits/code)">
+<img src="circuit_testbench/inl_dnl/DNL_INL_32hits.png" width="420" alt="DNL/INL (32 hits/code)">
 
 | hits/code | DNL (LSB) | INL (LSB) | Missing code |
 |---|---|---|---|
@@ -110,13 +110,17 @@ Sampling switch(S/H), CDAC, 비교기, SAR logic의 네 블록으로 구성됩�
 
 ```
 .
-├── figures/       논문 그림과 분석 결과 그래프 (PNG)
-├── diagrams/      회로도·블록도·타이밍도 원본 (draw.io)
-├── data/
-│   ├── fft/       Cadence FFT 스펙트럼 (pre: -0.2 dBFS 입력, post: -0.5 dBFS 입력)
-│   ├── switch/    TG Ron-Vin sweep (Wp:Wn = 1~4)
-│   └── inl_dnl/   코드별 hits / DNL / INL 표
-└── scripts/       그래프 생성 스크립트
+├── circuit_schematic/       블록별 회로도 (PNG + draw.io 원본)
+│   ├── top/                 SAR ADC 전체 블록 다이어그램
+│   ├── sampling_switch/     CMOS transmission gate
+│   ├── cdac/                binary-weighted CDAC 스위칭 동작
+│   ├── comparator/          StrongARM latch
+│   └── sar_logic/           동기식 SAR logic, 타이밍도
+├── circuit_testbench/       시뮬레이션 결과 (그래프 + 데이터 + 스크립트)
+│   ├── sampling_switch_ron/ TG Ron-Vin sweep (Wp:Wn = 1~4)
+│   ├── fft/                 pre/post-layout FFT 스펙트럼 (98.63 kHz, 497.07 kHz)
+│   └── inl_dnl/             code-density 방식 DNL/INL
+└── layout/                  칩 전체와 블록별 layout
 ```
 
 ## 한계와 향후 연구
