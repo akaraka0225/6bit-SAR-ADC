@@ -19,7 +19,7 @@
 | Area | – | 0.45 mm² (790 μm × 573.5 μm) |
 
 $$
-\mathrm{FoM_W} = \frac{P}{f_s \cdot 2^{\mathrm{ENOB}}}
+\boldsymbol{\mathrm{FoM_W} = \frac{P}{f_s \cdot 2^{\mathrm{ENOB}}}}
 $$
 
 ENOB는 약 0.1 bit만 떨어졌지만, 소비 전력은 약 3.17배, FoM<sub>W</sub>는 약 3.4배 커졌습니다. Layout 기생 성분 때문에 선형성이 감소할 수 있고 소비전력이 증가 할 수도 있지만 소비전력이 약 3배 증가한건 기생성분의 영향뿐만 아니라 다른 영향도 있을 것이라 판단됩니다.

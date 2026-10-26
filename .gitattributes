@@ -1,0 +1,2 @@
+# Plotting scripts are helpers, not the design itself: keep them out of the language bar
+*.py linguist-detectable=false
