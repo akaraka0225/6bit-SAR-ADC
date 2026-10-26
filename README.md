@@ -106,15 +106,6 @@ Sampling switch(S/H), CDAC, 비교기, SAR logic의 네 블록으로 구성됩�
 | 16 | −0.29 / +0.10 | −0.18 / +0.22 | 없음 |
 | 32 | −0.29 / +0.06 | −0.19 / +0.22 | 없음 |
 
-## 측정 계획
-
-<img src="figures/measurement_setup.png" width="480" alt="측정 셋업 다이어그램">
-
-1. **기능 확인**: 외부 clock, reset, VCM을 넣은 상태에서 Vin = 2.5 V ± 1 LSB를 인가하고, MSB가 바뀌는지 본 뒤 LSB까지 차례로 확인합니다.
-2. **동적 성능**: 함수발생기로 98.63 kHz와 497.07 kHz 사인파를 넣고, 8 MHz 외부 클럭을 줍니다. D5~D0을 로직 분석기(16 MHz 비동기 오버샘플링)로 캡처하고, PulseView에서 CSV로 내보낸 뒤 Python으로 FFT를 계산합니다.
-
-자세한 설계는 [measurement/PLAN.md](measurement/PLAN.md)에 있습니다.
-
 ## 저장소 구성
 
 ```
@@ -125,8 +116,7 @@ Sampling switch(S/H), CDAC, 비교기, SAR logic의 네 블록으로 구성됩�
 │   ├── fft/       Cadence FFT 스펙트럼 (pre: -0.2 dBFS 입력, post: -0.5 dBFS 입력)
 │   ├── switch/    TG Ron-Vin sweep (Wp:Wn = 1~4)
 │   └── inl_dnl/   코드별 hits / DNL / INL 표
-├── scripts/       그래프 생성 스크립트
-└── measurement/   칩 측정 프로그램 설계 문서
+└── scripts/       그래프 생성 스크립트
 ```
 
 ## 그래프 다시 만들기
@@ -148,7 +138,7 @@ SNDR과 SFDR 값은 Cadence 출력값을 그대로 옮겼고, ENOB = (SNDR − 1
 
 ## 한계와 향후 연구
 
-- 실물 칩 측정과 corner simulation은 아직 하지 않았습니다. 칩이 도착하면 위 측정 계획대로 진행할 예정입니다.
+- 실물 칩 측정과 corner simulation은 아직 하지 않았습니다.
 - Post-layout에서 전력이 3.17배로 늘어난 원인을 분석해 layout을 최적화해야 합니다.
 - 다음 설계에서는 fully differential 구조, bootstrap switch, bottom-plate sampling, monotonic switching[5] 등을 적용해 저전력 SAR ADC를 설계할 계획입니다.
 
