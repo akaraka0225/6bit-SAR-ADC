@@ -1,0 +1,87 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="TG" id="tg-paper">
+    <mxGraphModel dx="800" dy="500" grid="1" gridSize="2" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="700" pageHeight="560" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Input / output wires -->
+        <mxCell id="w1" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="244" y="300" as="sourcePoint" /><mxPoint x="310" y="300" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w2" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="390" y="300" as="sourcePoint" /><mxPoint x="456" y="300" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <!-- Source/drain verticals (rectangle sides) -->
+        <mxCell id="w3" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="310" y="262" as="sourcePoint" /><mxPoint x="310" y="338" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w4" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="390" y="262" as="sourcePoint" /><mxPoint x="390" y="338" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <!-- PMOS (top) -->
+        <mxCell id="p3" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="310" y="262" as="sourcePoint" /><mxPoint x="390" y="262" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="p4" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="320" y="250" as="sourcePoint" /><mxPoint x="380" y="250" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="pb" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeWidth=2;strokeColor=#000000;fillColor=#FFFFFF;" value="" vertex="1">
+          <mxGeometry x="345" y="240" width="10" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="p5" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="350" y="240" as="sourcePoint" /><mxPoint x="350" y="216" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <!-- NMOS (bottom) -->
+        <mxCell id="n3" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="310" y="338" as="sourcePoint" /><mxPoint x="390" y="338" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="n4" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="320" y="350" as="sourcePoint" /><mxPoint x="380" y="350" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="n5" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="350" y="350" as="sourcePoint" /><mxPoint x="350" y="374" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <!-- Junction dots -->
+        <mxCell id="d1" parent="1" style="ellipse;html=1;aspect=fixed;strokeColor=#000000;fillColor=#000000;" value="" vertex="1">
+          <mxGeometry x="306" y="296" width="8" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="d2" parent="1" style="ellipse;html=1;aspect=fixed;strokeColor=#000000;fillColor=#000000;" value="" vertex="1">
+          <mxGeometry x="386" y="296" width="8" height="8" as="geometry" />
+        </mxCell>
+
+        <!-- Terminals (open circles) -->
+        <mxCell id="t1" parent="1" style="ellipse;html=1;aspect=fixed;strokeWidth=2;strokeColor=#000000;fillColor=#FFFFFF;" value="" vertex="1">
+          <mxGeometry x="236" y="296" width="8" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" parent="1" style="ellipse;html=1;aspect=fixed;strokeWidth=2;strokeColor=#000000;fillColor=#FFFFFF;" value="" vertex="1">
+          <mxGeometry x="456" y="296" width="8" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="t3" parent="1" style="ellipse;html=1;aspect=fixed;strokeWidth=2;strokeColor=#000000;fillColor=#FFFFFF;" value="" vertex="1">
+          <mxGeometry x="346" y="208" width="8" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="t4" parent="1" style="ellipse;html=1;aspect=fixed;strokeWidth=2;strokeColor=#000000;fillColor=#FFFFFF;" value="" vertex="1">
+          <mxGeometry x="346" y="374" width="8" height="8" as="geometry" />
+        </mxCell>
+
+        <!-- Labels -->
+        <mxCell id="l1" parent="1" style="text;html=1;align=right;verticalAlign=middle;fontFamily=Times New Roman;fontSize=18;fontColor=#000000;" value="&lt;i&gt;V&lt;/i&gt;&lt;sub&gt;IN&lt;/sub&gt;" vertex="1">
+          <mxGeometry x="166" y="286" width="64" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontFamily=Times New Roman;fontSize=18;fontColor=#000000;" value="&lt;i&gt;V&lt;/i&gt;&lt;sub&gt;DAC&lt;/sub&gt;" vertex="1">
+          <mxGeometry x="470" y="286" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=18;fontColor=#000000;" value="&lt;span style=&quot;text-decoration: overline;&quot;&gt;CLK&lt;/span&gt;" vertex="1">
+          <mxGeometry x="310" y="178" width="80" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=18;fontColor=#000000;" value="CLK" vertex="1">
+          <mxGeometry x="310" y="384" width="80" height="28" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
