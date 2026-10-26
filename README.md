@@ -36,6 +36,8 @@ Sampling switch(S/H), CDAC, 비교기, SAR logic의 네 블록으로 구성됩�
 - NMOS W/L = 2 μm / 0.5 μm, Wp:Wn = 3:1입니다. Wp:Wn = N(1~4)으로 sweep해 R<sub>on</sub> 변동폭과 SNDR을 비교한 뒤 정했습니다.
 - Layout에는 substrate noise와 latch-up을 막기 위해 guard ring을 넣었습니다.
 
+<img src="figures/02b_tg_layout.png" width="360" alt="Transmission gate layout">
+
 <img src="figures/tg_ron_sweep.png" width="480" alt="Wp:Wn sweep에 따른 Ron">
 
 ### 2. CDAC: binary-weighted, top-plate sampling
@@ -48,7 +50,9 @@ Sampling switch(S/H), CDAC, 비교기, SAR logic의 네 블록으로 구성됩�
   - C<sub>unit</sub>을 50 fF에서 112.5 fF로 키우자 비교기 kickback으로 생기는 V<sub>DAC</sub> 흔들림이 1.5 mV에서 0.64 mV로 약 57% 줄었습니다.
 - Mismatch를 줄이기 위해 common-centroid로 배치했습니다.
 
-<img src="figures/05_unit_cap_placement.png" width="260" alt="Common-centroid unit cap 배치표">
+<img src="figures/05_unit_cap_placement.png" width="260" alt="Common-centroid unit cap 배치표"> <img src="figures/05b_cdac_layout.png" width="280" alt="CDAC capacitor array layout">
+
+왼쪽은 common-centroid 배치표, 오른쪽은 이 배치표대로 그린 capacitor array layout입니다.
 
 ### 3. 비교기: StrongARM latch + SR latch
 
@@ -57,6 +61,9 @@ Sampling switch(S/H), CDAC, 비교기, SAR logic의 네 블록으로 구성됩�
 - Dynamic latch 구조여서 VDD에서 VSS로 흐르는 DC 경로가 없고, 정적 전력도 거의 없습니다.
 - 입력 트랜지스터를 최소 크기로 만들어 clock feedthrough와 kickback noise를 줄였습니다.
 - 출력에 NAND 기반 SR latch를 달아, 결정된 값을 다음 비교 때까지 유지합니다.
+- Layout은 mismatch를 줄이도록 좌우 대칭으로 그렸고, guard ring으로 외부 간섭을 막았습니다. 아래 그림에서 위쪽이 SR latch, 아래쪽이 StrongARM latch입니다.
+
+<img src="figures/06b_comparator_layout.png" width="320" alt="Comparator + SR latch layout">
 
 ### 4. SAR logic: 동기식, DFF 기반
 
