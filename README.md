@@ -119,23 +119,6 @@ Sampling switch(S/H), CDAC, 비교기, SAR logic의 네 블록으로 구성됩�
 └── scripts/       그래프 생성 스크립트
 ```
 
-## 그래프 다시 만들기
-
-```bash
-pip install -r requirements.txt
-python scripts/fft_2x2.py       # figures/10_fft_pre_post.png
-python scripts/plot_tg_ron.py   # figures/tg_ron_sweep.png
-python scripts/ron_plot.py      # figures/Ron_review.*, Ron_submit.* (개념도)
-```
-
-`scripts/adc_inl_dnl.py`는 Cadence ramp 시뮬레이션 원본 CSV가 있어야 실행됩니다. 원본은 100 MB가 넘어 저장소에 넣지 않았고, 결과 표만 `data/inl_dnl/`에 있습니다.
-
-```bash
-python scripts/adc_inl_dnl.py path/to/CORE_INL_DNL.csv
-```
-
-SNDR과 SFDR 값은 Cadence 출력값을 그대로 옮겼고, ENOB = (SNDR − 1.76) / 6.02로 계산했습니다.
-
 ## 한계와 향후 연구
 
 - 실물 칩 측정과 corner simulation은 아직 하지 않았습니다.
